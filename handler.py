@@ -11,7 +11,7 @@ API_URL = f"http://localhost:{PORT}/v1/chat/completions"
 
 def start():
     cmd = [
-        "python", "-m", "vllm.entrypoints.openai.api_server",
+        "python3", "-m", "vllm.entrypoints.openai.api_server",
         "--model", MODEL,
         "--host", "0.0.0.0",
         "--port", str(PORT),
