@@ -1,0 +1,19 @@
+name: Build & Push to GHCR
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build & Push
+        run: |
+          docker build -t ghcr.io/${{ github.repository_owner }}/gemma4-runpod:latest .
+          docker push ghcr.io/${{ github.repository_owner }}/gemma4-runpod:latest
