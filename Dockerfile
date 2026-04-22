@@ -9,4 +9,6 @@ RUN pip install --no-cache-dir -U runpod requests
 WORKDIR /app
 COPY handler.py /app/handler.py
 
+# Override l'ENTRYPOINT de vllm pour lancer directement le handler
+ENTRYPOINT []
 CMD ["python", "-u", "handler.py"]
